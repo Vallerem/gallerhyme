@@ -14,7 +14,18 @@ gem 'puma', '~> 3.11'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+
+# - Custom
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'dotenv-rails'
+
+gem 'jwt'
+
+gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'will_paginate', '~> 3.1.0'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -29,15 +40,29 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 group :development, :test do
+  # - test framework
+  gem 'rspec-rails', '~> 3.7'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
+  # generate fake data for tests and seeds
+  gem 'faker'
+
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+# - test environment
+group :test do
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker'
+  gem 'database_cleaner'
 end
 
 

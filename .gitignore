@@ -28,3 +28,6 @@
 # - env
 secrets_backup.yml
 .env
+
+# - client
+node_modules/ 

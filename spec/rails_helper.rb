@@ -42,8 +42,9 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # - Request helper
-  config.include RequestSpecHelper, type: :request
+  # - request_spec_helper + controller_spec_helper
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
 
   # - add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods

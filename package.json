@@ -5,7 +5,7 @@
     "yarn": "1.6.0"
   },
   "scripts": {
-    "build": "cd client && yarn install && yarn build",
+    "build": "cd client && npm install && npm run build",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "yarn build && yarn deploy",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"

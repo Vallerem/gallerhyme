@@ -2,6 +2,11 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
 
+  # - fallback routes for react
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
+
   # called before every action on controllers
   before_action :authorize_request
   

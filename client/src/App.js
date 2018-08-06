@@ -3,6 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  componentDidMount = () => {
+    fetch("/users", {
+      headers: {
+        Authorization:
+          "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MzM2NzEzMDh9.C-swmc_M0S_X9vytO1J_7LIwj9HPyyL64p8yCLY40rk"
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+  };
   render() {
     return (
       <div className="App">

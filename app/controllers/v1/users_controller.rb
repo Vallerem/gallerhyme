@@ -1,6 +1,7 @@
 module V1
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
+    before_action :check_is_same_user, only: [:update, :destroy]
     skip_before_action :authorize_request, only: :create
 
     # GET /users
@@ -47,9 +48,16 @@ module V1
       @user = User.find(params[:id])
     end
 
+    # Check current user for delete and update
+    def check_is_same_user
+      if current_user.email != @user.email
+        return json_response(message: "Wrong credentials")
+      end
+    end
+
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:name, :email, :password, :password_confirmation)
+      params.permit(:name, :email, :age, :password, :password_confirmation)
     end
   end
 end

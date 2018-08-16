@@ -11,3 +11,6 @@ end
 
 desc 'Start development server'
 task :start => 'start:development'
+
+desc 'Start production server'
+task :start_prod => 'start:production'

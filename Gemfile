@@ -48,10 +48,10 @@ group :development, :test do
 end
 
 group :development do
-  # generate fake data for tests and seeds
+  # - generate fake data for tests and seeds
   gem 'faker'
 
-  # run procfile 
+  # - run procfile 
   gem 'foreman', '~> 0.82.0'
 
   gem 'listen', '>= 3.0.5', '< 3.2'

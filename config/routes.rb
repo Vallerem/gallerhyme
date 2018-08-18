@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     resources :users
 
     post "signup", to: "users#create"
-    post "login", to: "authentication#authenticate"
   end
+
+  post "login", to: "authentication#authenticate"
 
   # - react-router needs this
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do

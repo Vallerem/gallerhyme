@@ -10,10 +10,6 @@ export class UsersList extends Component {
     this.state = {};
   }
   render() {
-    console.log(this.props.loading);
-    // console.log(this.props.error);
-    // console.log(this.props.users);
-
     return (
       <div>
         <h1>Users List</h1>
@@ -21,6 +17,7 @@ export class UsersList extends Component {
         {this.props.loading && <h1>...Loading</h1>}
         {!this.props.loading &&
           !this.props.error &&
+          this.props.users &&
           this.props.users.map((user, index) => (
             <div key={index}>
               <div>

@@ -12,7 +12,7 @@ import { ajax } from "rxjs/ajax";
 // import axios from "axios";
 
 import { FETCH_ALL_USERS, FETCH_USER } from "../constants";
-import { fetchingUserSuccess, fetchingUserError } from "../actions";
+import { fetchingUserSuccess, fetchingUserError, expiredTokenRediect } from "../actions";
 
 export const fetchAllUsersEpic = action$ =>
   action$.pipe(
@@ -30,9 +30,16 @@ export const fetchAllUsersEpic = action$ =>
         map(response => fetchingUserSuccess(response)),
         catchError(error => {
           if (error.response.message) {
+            if (error.response.expired) {
+              return of(expiredTokenRediect());
+            }
             return of(fetchingUserError(error.response.message));
           }
-          return of(fetchingUserError("Error connecting to the server, please try later"));
+          return of(
+            fetchingUserError(
+              "Error connecting to the server, please try later"
+            )
+          );
         })
       );
     })

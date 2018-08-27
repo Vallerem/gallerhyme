@@ -10,13 +10,13 @@ module ExceptionHandler
     # Define custom handlers
 
     # Controls Validation failed: X message
-    rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two  
+    rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
     rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
     rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
 
     rescue_from ActiveRecord::RecordNotFound do |e|
-      json_response({ message: e.message }, :not_found)
+      json_response({message: e.message}, :not_found)
     end
   end
 
@@ -24,11 +24,19 @@ module ExceptionHandler
 
   # JSON response with message; Status code 422 - unprocessable entity
   def four_twenty_two(e)
-    json_response({ message: e.message }, :unprocessable_entity)
+    if e.message == "Signature has expired"
+      return json_response({
+               message: Message.expired_token,
+               expired: true,
+               redirect: "/login",
+             }, :unprocessable_entity)
+    end
+
+    json_response({message: e.message}, :unprocessable_entity)
   end
 
   # JSON response with message; Status code 401 - Unauthorized
   def unauthorized_request(e)
-    json_response({ message: e.message }, :unauthorized)
+    json_response({message: e.message}, :unauthorized)
   end
 end

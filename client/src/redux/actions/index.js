@@ -9,7 +9,7 @@ import {
 export const fetchingUserSuccess = data => ({ type: FETCHING_USER_SUCCESS, data });
 export const fetchingUserError = error => ({ type: FETCHING_USER_ERROR, error });
 
-export const fetchAllUsers = () => ({ type: FETCH_ALL_USERS });
+export const fetchAllUsers = (page) => ({ type: FETCH_ALL_USERS, page });
 export const fetchUser = username => ({ type: FETCH_USER, username });
 
 export const expiredTokenRediect = () => ({ type: TOKEN_HAS_EXPIRED });

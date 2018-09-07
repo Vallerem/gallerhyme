@@ -31,3 +31,6 @@ secrets_backup.yml
 
 # - client
 node_modules/ 
+
+# - vscode
+.vscode

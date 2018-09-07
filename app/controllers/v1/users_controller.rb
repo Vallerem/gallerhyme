@@ -6,8 +6,8 @@ module V1
 
     # GET /users
     def index
-      @users = User.all
-      json_response(@users)
+      @users = User.all.paginate(page: params[:page])
+      json_response({users: @users, page: @users.current_page, pages: @users.total_pages})
     end
 
     # GET /users/1

@@ -1,7 +1,9 @@
 export default {
   // expiredTokenModal: false, // TODO better UX
   users: {
-    users: [],
+    usersData: [],
+    page: 1,
+    pages: null,
     fetchedUser: {},
     fetchUserLoading: false,
     fetchUserError: null

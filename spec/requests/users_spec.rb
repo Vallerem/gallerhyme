@@ -18,13 +18,11 @@ RSpec.describe "Users", type: :request do
     it "returns users" do
       # puts response
       # Note `json` is a custom helper to parse JSON responses
-      p json
       expect(json).not_to be_empty
-      expect(json.size).to eq(1)
+      expect(json.size).to eq(3) # lenght of user object + page & pages keys
     end
 
     it "returns status code 200" do
-      puts json
       expect(response).to have_http_status(200)
     end
   end
@@ -60,7 +58,7 @@ RSpec.describe "Users", type: :request do
   # Test suite for POST /users
   describe "POST /users" do
     # valid payload
-    let(:valid_attributes) { {name: "Edward Elric", email: "foo@bar.com", password: "test123", password_confirmation: "test123"} }
+    let(:valid_attributes) { {name: "Edward Elric", email: "foo@bar.com", age: 33, password: "test123", password_confirmation: "test123"} }
 
     context "when valid request" do
       before { post "/signup", params: valid_attributes.to_json, headers: headers }
@@ -86,7 +84,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "returns failure message" do
-        expect(json["message"]).to match(/Validation failed: Password can't be blank, Name can't be blank, Password digest can't be blank, Email can't be blank/)
+        expect(json["message"]).to match(/can't be blank, can't be blank, can't be blank, can't be blank, is not a number, can't be blank, is invalid/)
       end
     end
 
@@ -98,19 +96,19 @@ RSpec.describe "Users", type: :request do
       end
 
       it "returns a validation failure message" do
-        expect(response.body).to match(/Validation failed: Password can't be blank, Password digest can't be blank/)
+        expect(response.body).to match(/can't be blank, can't be blank, can't be blank, is not a number/)
       end
     end
 
     context "when password and password_confirm do not match" do
-      before { post "/users", params: {name: "Edward Elric", email: "foo@bar.com", password: "test123", password_confirmation: "123-test"} }
+      before { post "/users", params: {name: "Edward Elric", email: "foo@bar.com", age: 33, password: "test123", password_confirmation: "123-test"} }
 
       it "returns status code 422" do
         expect(response).to have_http_status(422)
       end
 
       it "returns a validation failure message" do
-        expect(response.body).to match(/Validation failed: Password confirmation doesn't match Password/)
+        expect(response.body).to match(/doesn't match Password/)
       end
     end
   end

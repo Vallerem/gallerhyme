@@ -26,9 +26,9 @@ export const fetchAllUsersEpic = action$ =>
         url: `/users?page=${page}`,
         method: "GET",
         headers: {
-          // TODO: Harcoded token has to be dynamic
+          // TODO: Harcoded token has to be dynamic - JWT without expiring date
           Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6Im1hbnVAdmFsbGVyZW0uY29tIiwiZXhwIjoxNTM2NDM2NzI4fQ.DldOzxlolv4IuWkeW5V58LFtxgIcXWVeI35ta1wsEPk"
+            "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJpc3N1ZXJfbmFtZSIsImF1ZCI6ImNsaWVudCIsInVzZXJfaWQiOjEsImVtYWlsIjoibWFudUB2YWxsZXJlbS5jb20iLCJhZ2UiOjI3fQ.XYfZit2AHRobUTz3u0v3rHV5CnwoedYmZbXaAjG4f5s"
         }
       }).pipe(
         map(res => res.response),

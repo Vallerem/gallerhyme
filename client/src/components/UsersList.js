@@ -70,11 +70,16 @@ class UsersList extends React.Component {
           dataLength={this.state.users.length}
           next={this.handlefetchUsersWithPage}
           hasMore={this.state.hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={
+            this.props.error ? <h4>{this.props.error}</h4> : <h4>Loading...</h4>
+          }
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>
-                No more items to see <span aria-label="eyes icon" role="img">👀</span>
+                No more items to see{" "}
+                <span aria-label="eyes icon" role="img">
+                  👀
+                </span>
               </b>
             </p>
           }

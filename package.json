@@ -9,7 +9,7 @@
     "client/node_modules"
   ],
   "scripts": {
-    "deplay-all": "git push origin master && git push heroku master",
+    "deploy-all": "git push origin master && git push heroku master",
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run build && npm run deploy",

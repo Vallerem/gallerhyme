@@ -4,10 +4,15 @@
     "node": "8.9.4",
     "yarn": "1.6.0"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
   "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
+    "deplay-all": "git push origin master && git push reoku master",
+    "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "yarn build && yarn deploy",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+    "heroku-postbuild": "npm run build && npm run deploy",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   }
 }

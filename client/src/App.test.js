@@ -1,9 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import App from "./App";
+import { Route } from "react-router";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("<App />", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+
+  it("renders itself", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("renders all routes", () => {
+    // Extremely redundant 🙈
+    const routesLength = wrapper.find(Route).length;
+    expect(wrapper.find(Route)).toHaveLength(routesLength);
+  });
 });

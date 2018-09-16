@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserList/> renders itsel with Redux 1`] = `
+<UsersList
+  error={null}
+  fetchAllUsers={[Function]}
+  loading={false}
+  page={1}
+  pages={null}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  users={Array []}
+/>
+`;
+
+exports[`<UserList/> renders itsel without Redux 1`] = `
+<div>
+  <h1>
+    Users
+  </h1>
+  <hr />
+  <InfiniteScroll
+    dataLength={0}
+    disableBrowserPullToRefresh={true}
+    endMessage={
+      <p
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        <b>
+          No more items to see
+           
+          <span
+            aria-label="eyes icon"
+            role="img"
+          >
+            👀
+          </span>
+        </b>
+      </p>
+    }
+    hasMore={true}
+    loader={
+      <h4>
+        Loading...
+      </h4>
+    }
+    next={[Function]}
+    pullDownToRefreshContent={
+      <h3>
+        Pull down to refresh
+      </h3>
+    }
+    pullDownToRefreshThreshold={100}
+    releaseToRefreshContent={
+      <h3>
+        Release to refresh
+      </h3>
+    }
+  />
+</div>
+`;

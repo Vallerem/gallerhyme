@@ -1,11 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { fetchAllUsers } from "../redux/actions";
+import { fetchAllUsers } from "../../redux/actions";
 
-class UsersList extends React.Component {
+export class UsersList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,6 +91,21 @@ class UsersList extends React.Component {
   }
 }
 
+UsersList.defaultProps = {
+  users: [],
+  page: 1,
+  fetchAllUsers: () => null
+};
+
+UsersList.propTypes = {
+  users: PropTypes.array,
+  page: PropTypes.number.isRequired,
+  pages: PropTypes.number,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  fetchAllUsers: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   users: state.users.usersData,
   page: state.users.page,
@@ -99,15 +114,7 @@ const mapStateToProps = state => ({
   error: state.users.fetchUserError
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchAllUsers
-    },
-    dispatch
-  );
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { fetchAllUsers }
 )(UsersList);

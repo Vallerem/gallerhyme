@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
 
+  # - fallback routes for react
+  def fallback_index_html
+    respond_to do |format|
+      format.html { render body: Rails.root.join("public/index.html").read }
+    end
+  end
+
   include Response
   include ExceptionHandler
 
@@ -14,12 +21,5 @@ class ApplicationController < ActionController::API
   # Check for valid request token and return user
   def authorize_request
     @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
-  end
-
-  # - fallback routes for react
-  def fallback_index_html
-    respond_to do |format|
-      format.html { render body: Rails.root.join("public/index.html").read }
-    end
   end
 end

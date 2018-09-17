@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::BASE
   include Response
   include ExceptionHandler
   include ActionController::MimeResponds

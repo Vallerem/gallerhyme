@@ -1,19 +1,15 @@
 class ApplicationController < ActionController::API
-  include ActionController::MimeResponds
-
-  # - fallback routes for react
-  def fallback_index_html
-    respond_to do |format|
-      format.html { render body: Rails.root.join("public/index.html").read }
-    end
-  end
-
   include Response
   include ExceptionHandler
 
+  # - fallback routes for react
+  def fallback_index_html
+    render file: Rails.root.join(“public/index.html”)
+  end
+
   # called before every action on controllers
   before_action :authorize_request
-
+  
   attr_reader :current_user
 
   private

@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include Response
   include ExceptionHandler
-  include ActionController::MimeResponds
 
   # - fallback routes for react
   def fallback_index_html

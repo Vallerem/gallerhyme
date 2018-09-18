@@ -16,6 +16,7 @@ class ApplicationController < ActionController::API
 
   # called before every action on controllers
   before_action :authorize_request
+  skip_before_action :authorize_request, only: :fallback_index_html, raise: :false
 
   attr_reader :current_user
 

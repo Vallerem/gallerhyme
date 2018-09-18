@@ -23,7 +23,7 @@ export const fetchAllUsersEpic = action$ =>
     ofType(FETCH_ALL_USERS),
     mergeMap(({ page = 1 }) => {
       return ajax({
-        url: `/users?page=${page}`,
+        url: `/api/users?page=${page}`,
         method: "GET",
         headers: {
           // TODO: Harcoded token has to be dynamic - JWT without expiring date

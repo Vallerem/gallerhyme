@@ -1,6 +1,7 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
+  # include ActionController::MimeResponds
 
   # - fallback routes for react
   def fallback_index_html
@@ -14,7 +15,7 @@ class ApplicationController < ActionController::Base
   # end
 
   # called before every action on controllers
-  before_action :authorize_request
+  # before_action :authorize_request
 
   attr_reader :current_user
 

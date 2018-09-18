@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   scope module: :v1, constraints: ApiVersion.new('v1', true) do
     resources :users
     post "signup", to: "users#create"
+    get '*path', to: "application#fallback_index_html", constraints: -> (request) do
+      !request.xhr? && request.format.html?
+    end
   end
 
   post "login", to: "authentication#authenticate"

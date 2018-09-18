@@ -19,18 +19,14 @@ export class App extends Component {
             path="/"
             component={() => (
               <h1>
-                Home - <Link to="/list/users"> To users</Link>
+                Home - <Link to="/users"> To users</Link>
               </h1>
             )}
           />
-          <Route exact path="/list/users" component={UsersList} />
-          <Route
-            exact
-            path="/list/users/:id"
-            component={() => <h1>Detal!!</h1>}
-          />
-          <Route path="/auth/login" render={() => <h1> Login</h1>} />
-          <Route path="/auth/signup" render={() => <h1> Signup</h1>} />
+          <Route exact path="/users" component={UsersList} />
+          <Route exact path="/users/:id" component={() => <h1>Detal!!</h1>} />
+          <Route path="/login" render={() => <h1> Login</h1>} />
+          <Route path="/signup" render={() => <h1> Signup</h1>} />
           <Route render={() => <h1> Not found</h1>} />
         </Switch>
       </Router>

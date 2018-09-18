@@ -11,9 +11,9 @@ RSpec.describe "Users", type: :request do
   end
 
   # Test suite for GET /users
-  describe "GET /users" do
+  describe "GET /api/users" do
     # make HTTP get request before each example
-    before { get "/users", params: {}, headers: valid_headers }
+    before { get "/api/users", params: {}, headers: valid_headers }
 
     it "returns users" do
       # puts response
@@ -28,8 +28,8 @@ RSpec.describe "Users", type: :request do
   end
 
   # Test suite for GET /users/:id
-  describe "GET /users/:id" do
-    before { get "/users/#{user_id}", params: {}, headers: valid_headers }
+  describe "GET /api/users/:id" do
+    before { get "/api/users/#{user_id}", params: {}, headers: valid_headers }
 
     context "when the record exists" do
       it "returns the user" do
@@ -56,12 +56,12 @@ RSpec.describe "Users", type: :request do
   end
 
   # Test suite for POST /users
-  describe "POST /users" do
+  describe "POST /api/users" do
     # valid payload
     let(:valid_attributes) { {name: "Edward Elric", email: "foo@bar.com", age: 33, password: "test123", password_confirmation: "test123"} }
 
     context "when valid request" do
-      before { post "/signup", params: valid_attributes.to_json, headers: headers }
+      before { post "/api/signup", params: valid_attributes.to_json, headers: headers }
 
       it "creates a new user" do
         expect(response).to have_http_status(201)
@@ -77,7 +77,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "when invalid request" do
-      before { post "/signup", params: {}, headers: headers }
+      before { post "/api/signup", params: {}, headers: headers }
 
       it "does not create a new user" do
         expect(response).to have_http_status(422)
@@ -89,7 +89,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "when the request is invalid" do
-      before { post "/users", params: {name: "Edward Elric", email: "foo@bar.com"} }
+      before { post "/api/users", params: {name: "Edward Elric", email: "foo@bar.com"} }
 
       it "returns status code 422" do
         expect(response).to have_http_status(422)
@@ -101,7 +101,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "when password and password_confirm do not match" do
-      before { post "/users", params: {name: "Edward Elric", email: "foo@bar.com", age: 33, password: "test123", password_confirmation: "123-test"} }
+      before { post "/api/users", params: {name: "Edward Elric", email: "foo@bar.com", age: 33, password: "test123", password_confirmation: "123-test"} }
 
       it "returns status code 422" do
         expect(response).to have_http_status(422)
@@ -114,11 +114,11 @@ RSpec.describe "Users", type: :request do
   end
 
   # Test suite for PUT /users/:id
-  describe "PUT /users/:id" do
+  describe "PUT /api/users/:id" do
     let(:valid_attributes) { {name: "Edward Elric", email: "foo@bar.com", password: "test123", password_confirmation: "test123"} }
 
     context "when the record exists" do
-      before { put "/users/#{user_id}", params: valid_attributes.to_json, headers: valid_headers }
+      before { put "/api/users/#{user_id}", params: valid_attributes.to_json, headers: valid_headers }
 
       it "updates the record" do
         expect(response.body).to be_empty
@@ -131,8 +131,8 @@ RSpec.describe "Users", type: :request do
   end
 
   # Test suite for DELETE /users/:id
-  describe "DELETE /users/:id" do
-    before { delete "/users/#{user_id}", params: {}, headers: valid_headers }
+  describe "DELETE /api/users/:id" do
+    before { delete "/api/users/#{user_id}", params: {}, headers: valid_headers }
 
     it "returns status code 204" do
       expect(response).to have_http_status(204)

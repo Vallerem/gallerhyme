@@ -37,10 +37,8 @@
     "source-map-explorer": "^1.6.0"
   },
   "proxy": {
-    "/api": {
-      "target": "http://localhost:3001",
-      "secure": false,
-      "changeOrigin": true
-      }
+    "/api/*": {
+      "target": "http://web:3001"
+    }
   }
 }

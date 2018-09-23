@@ -19,7 +19,7 @@ export class App extends Component {
             path="/"
             component={() => (
               <h1>
-                Home <Link to="/users"> To users</Link>
+                Home jajajaj <Link to="/users"> To users</Link>
               </h1>
             )}
           />

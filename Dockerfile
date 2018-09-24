@@ -69,9 +69,8 @@ RUN mkdir /gallerhyme
 WORKDIR /gallerhyme
 COPY Gemfile /gallerhyme/Gemfile
 COPY Gemfile.lock /gallerhyme/Gemfile.lock
-ADD package.json yarn.lock
 RUN bundle install
 COPY . /gallerhyme
 WORKDIR /gallerhyme/client
-RUN yarn install && yarn build
+RUN yarn install
 WORKDIR /gallerhyme

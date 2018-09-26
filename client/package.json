@@ -38,7 +38,7 @@
   },
   "proxy": {
     "/api/*": {
-      "target": "http://web:3001"
+      "target": "http://localhost:3001"
     }
   }
 }

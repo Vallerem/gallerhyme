@@ -71,6 +71,6 @@ COPY Gemfile /gallerhyme/Gemfile
 COPY Gemfile.lock /gallerhyme/Gemfile.lock
 RUN bundle install
 COPY . /gallerhyme
-# WORKDIR /gallerhyme/client
-# RUN yarn install
-# WORKDIR /gallerhyme
+WORKDIR /gallerhyme/client
+RUN yarn install
+WORKDIR /gallerhyme

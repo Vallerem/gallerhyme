@@ -18,16 +18,18 @@ services:
       - "3001:3001"
     links:
       - db
+      - react
     depends_on:
       - db
-      
-  # react:
-  #   build: .
-  #   volumes:
-  #     - ./client/node_modules
-  #   working_dir: /gallerhyme/client
-  #   command: yarn start
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     NODE_ENV: development
+      - react
+
+  react:
+    build: .
+    volumes:
+      - .:/gallerhyme
+    working_dir: /gallerhyme/client
+    command: yarn start
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development

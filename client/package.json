@@ -6,19 +6,21 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "http-proxy-middleware": "^0.19.0",
     "immer": "^1.7.2",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-infinite-scroll-component": "^4.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.3",
     "redux": "^4.0.0",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.2.2",
@@ -38,9 +40,13 @@
     "sinon": "^6.3.3",
     "source-map-explorer": "^1.6.0"
   },
-  "proxy": {
-    "/api/*": {
-      "target": "http://web:3001"
-    }
-  }
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
